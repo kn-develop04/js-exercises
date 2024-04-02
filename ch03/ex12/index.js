@@ -1,6 +1,6 @@
 let obj1 = { x: 1 };
 obj1.y = 2;
-console.log(obj1) //obj1にプロパティが追加できることを確認
+console.log(obj1); //obj1にプロパティが追加できることを確認
 
 let obj2 = { x: 1, y: 2 };
 console.log(obj1 === obj2); //結果は別のオブジェクトのため、値は同じだがfalse

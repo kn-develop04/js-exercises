@@ -11,5 +11,5 @@ let symname3 = Symbol.for("propname");
 let symname4 = Symbol.for("propname");
 
 //SymbolとSymbol.forの比較(挙動確認)
-console.log(symname === symname2);  // 同じSymbol値はfalse
+console.log(symname === symname2); // 同じSymbol値はfalse
 console.log(symname3 === symname4); // 同じSymbol.for値はtrue

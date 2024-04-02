@@ -10,6 +10,6 @@ export class Point {
   add(point) {
     this.x += point.x;
     this.y += point.y;
-    return [this.x,this.y]
+    return [this.x, this.y];
   }
 }

@@ -1,9 +1,9 @@
-"\u30d1\u30f3" //NFC
-"\u30cf\u309a\u30f3" //NFD
+"\u30d1\u30f3"; //NFC
+"\u30cf\u309a\u30f3"; //NFD
 
 // ---回答はここまで、↓は確認用---
 const nfcPan = "\u30d1\u30f3";
-const nfdPan = "\u30cf\u309a\u30f3"; 
+const nfdPan = "\u30cf\u309a\u30f3";
 
 //NFCとNFDの比較をする
 console.log(`nfc:${nfcPan},nfd:${nfdPan}`);
