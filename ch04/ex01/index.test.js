@@ -23,7 +23,7 @@ describe("Complex Number Operations", () => {
     test("Infinityを含むと結果はInfinity", () => {
       const result = add(
         { real: Infinity, imaginary: Infinity },
-        { real: 1, imaginary: 1 },
+        { real: Infinity, imaginary: Infinity },
       );
       expect(result).toEqual({ real: Infinity, imaginary: Infinity });
     });
@@ -78,12 +78,12 @@ describe("Complex Number Operations", () => {
       );
       expect(result).toEqual({ real: NaN, imaginary: NaN });
     });
-    test("Infinity同士はInfinity", () => {
+    test("Infinity同士は、実部はInfinityの引き算によりNaN、虚部はInfinityの足し算によりInfinityになる", () => {
       const result = mul(
         { real: Infinity, imaginary: Infinity },
         { real: Infinity, imaginary: Infinity },
       );
-      expect(result).toEqual({ real: Infinity, imaginary: Infinity });
+      expect(result).toEqual({ real: NaN, imaginary: Infinity });
     });
   });
 
@@ -101,12 +101,12 @@ describe("Complex Number Operations", () => {
       );
       expect(result).toEqual({ real: NaN, imaginary: NaN });
     });
-    test("Infinityを含むと結果はInfinity", () => {
+    test("Infinity同士は、Infinity同士の除算になるためNaNになる", () => {
       const result = div(
         { real: Infinity, imaginary: Infinity },
         { real: Infinity, imaginary: Infinity },
       );
-      expect(result).toEqual({ real: Infinity, imaginary: Infinity });
+      expect(result).toEqual({ real: NaN, imaginary: NaN });
     });
   });
 });
