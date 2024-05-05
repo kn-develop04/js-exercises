@@ -33,8 +33,3 @@ export function div(complex1, complex2) {
     denominator;
   return { real: realPart, imaginary: imaginaryPart };
 }
-
-const complex1 = { real: Infinity, imaginary: Infinity };
-const complex2 = { real: 1, imaginary: 1 };
-console.log(mul(complex1, complex2));
-console.log(Infinity * Infinity);

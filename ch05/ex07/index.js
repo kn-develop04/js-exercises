@@ -1,11 +1,9 @@
 function f() {
-    try {
-        return true;
-    } finally {
-        return false;
-    }
+  try {
+    return true;
+  } finally {
+    return false;
+  }
 }
 
 console.log(f());
-
-

@@ -40,7 +40,7 @@ describe("エスケープシーケンスを変換", () => {
     expect(convertAtIfPattern("abcd\\fg")).toBe("abcd\\\\fg");
     expect(convertAtSwitchPattern("abcd\\fg")).toBe("abcd\\\\fg");
   });
-  test("ここまでをすべて複合した文字列を表示する", () => {
+  test("複数のエスケープシーケンス文字が複合された文字列を表示する", () => {
     expect(convertAtIfPattern("\0\b\t\n\v\f\r\"'\\")).toBe(
       `\\0\\b\\t\\n\\v\\f\\r\\"\\'\\\\`,
     );

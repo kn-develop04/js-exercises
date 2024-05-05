@@ -1,6 +1,6 @@
 export function convertAtIfPattern(strBeforeConvet) {
   let strAtferConvet = "";
-  for (let str of strBeforeConvet) {
+  for (const str of strBeforeConvet) {
     if (str === "\0") {
       strAtferConvet += "\\0";
     } else if (str === "\b") {
@@ -30,7 +30,7 @@ export function convertAtIfPattern(strBeforeConvet) {
 
 export function convertAtSwitchPattern(strBeforeConvet) {
   let strAtferConvet = "";
-  for (let str of strBeforeConvet) {
+  for (const str of strBeforeConvet) {
     switch (str) {
       case "\0":
         strAtferConvet += "\\0";

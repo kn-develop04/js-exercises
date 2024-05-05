@@ -12,5 +12,5 @@ test("Jsonとしてパースできる", () => {
 });
 
 test("Jsonとしてパースできない", () => {
-  expect(parse({ count: undefined })).toHaveProperty("error"); // プロパティにerrorが含まれる場合はパースできておらずエラーが出ている
+  expect(parse({ count: undefined })).toHaveProperty("error"); // 結果のプロパティにerrorが含まれる場合はパースできておらずエラーが出ている
 });

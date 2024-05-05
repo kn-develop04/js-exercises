@@ -5,6 +5,6 @@ console.log(typeof NaN); // 予想：number 結果：number
 console.log(typeof 1); // 予想：number 結果：number
 
 function test() {
-  const result = 1 + 1;
+  1 + 1;
 }
 console.log(typeof test); // 予想：function 結果：function
