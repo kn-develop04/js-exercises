@@ -185,7 +185,7 @@ function f(input) {
 ```js
 const isNonZero = any(
   (n) => n > 0,
-  (n) => n < 0
+  (n) => n < 0,
 );
 
 console.log(isNonZero(0)); // => false
