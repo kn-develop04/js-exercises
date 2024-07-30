@@ -1,6 +1,7 @@
 # 練習問題: 11 章
 
 ## 問題 11.1 💻🧪
+
 以下のような動作を実現する、 `TypeMap` クラスを作成しなさい。
 
 ```js
@@ -116,9 +117,9 @@ const p = seq(
   seq(
     charFrom("Jj"),
     quote("ava"),
-    repeat(seq(charFrom("Ss"), quote("cript")), 0, 1)
+    repeat(seq(charFrom("Ss"), quote("cript")), 0, 1),
   ),
-  quote(" is fun")
+  quote(" is fun"),
 );
 ```
 

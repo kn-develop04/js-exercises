@@ -1,11 +1,17 @@
-// f はオブジェクトを1つ引数に取る関数
-function cache(f) {
-  // この関数を実装する
-}
+export function cache(f) {
+  const cacheMap = new WeakMap();
+  function cachedSlowFn(obj) {
+    if (!cacheMap.has(obj)) {
+      const result = f(obj);
+      cacheMap.set(obj, result);
+    }
+    return cacheMap.get(obj);
+  }
 
-function slowFn(obj) {
-  // 時間のかかる処理
+  return cachedSlowFn;
 }
-
-// cachedSlowFnを同じ引数で複数回呼び出すと、2回目以降はキャッシュが返る
-const cachedSlowFn = cache(slowFn);
+//文字列を大文字する処理が時間がかかるものとする
+export function slowFn(obj) {
+  console.log("Calculating", obj);
+  return obj.name.toUpperCase();
+}
