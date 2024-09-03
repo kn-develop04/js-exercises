@@ -150,7 +150,7 @@ function f4() {
       wait(1000).then(() => {
         logB();
         return 100;
-      })
+      }),
     )
     .then((v) => log(v));
 }
@@ -166,7 +166,7 @@ function f5() {
       wait1().then(() => {
         logB();
         return 100;
-      })
+      }),
     )
     .then((v) => log(v));
 }
@@ -567,7 +567,7 @@ async function i5() {
 
 async function i6() {
   return Promise.all(
-    [0, 1, 2, 3, 4].map((i) => wait((5 - i) * 1000).then(() => log(i)))
+    [0, 1, 2, 3, 4].map((i) => wait((5 - i) * 1000).then(() => log(i))),
   ).then(() => log("COMPLETED"));
 }
 
@@ -646,7 +646,7 @@ async function i8() {
 ```js
 const resp = await retryWithExponentialBackoff(
   () => fetch("https://example.com"),
-  5
+  5,
 );
 ```
 
