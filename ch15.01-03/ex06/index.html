@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body bgcolor="#99FF33" style="text-align: center">
+    <h1 style="text-align: center">ご登録ありがとうございます！</h1>
+    あなたは記念すべき<b><font size="50">100人目</font></b
+    >のアプリ登録者です。<br />
+    通常は50万円のところ<font size="50" color="red">利用金額25万円</font
+    >となります。お支払いください。<br />
+    なお、手続きは完了しているため、<b
+      ><font size="50">登録解除はできません。</font></b
+    ><br />
+    それではアプリをお楽しみください!<br />
+    <table border="1" align="center">
+      <tr>
+        <th>登録日時</th>
+        <th>
+          <script>
+            const registerDate = new Date();
+            document.write(
+              registerDate.getMonth() +
+                1 +
+                "月" +
+                registerDate.getDate() +
+                "日",
+            );
+          </script>
+        </th>
+      </tr>
+      <tr>
+        <th>支払期限</th>
+        <th>
+          <script>
+            const termDate = new Date();
+            document.write(
+              termDate.getMonth() + 2 + "月" + termDate.getDate() + "日",
+            );
+          </script>
+        </th>
+      </tr>
+      <th>支払方法</th>
+      <th>
+        ビットコイン<br />
+        詳細は111-1111-1111に電話をしてください。
+      </th>
+      <tr>
+        <th>あなたのOS情報</th>
+        <th>
+          <script>
+            document.write(navigator.userAgent);
+          </script>
+        </th>
+      </tr>
+
+      <tr>
+        <th>あなたのCPU数</th>
+        <th>
+          <script>
+            document.write(navigator.hardwareConcurrency);
+          </script>
+        </th>
+      </tr>
+      <tr>
+        <th>あなたの使用言語</th>
+        <th>
+          <script>
+            document.write(navigator.language);
+          </script>
+        </th>
+      </tr>
+    </table>
+    表について<br />
+    「あなたのOS情報」とは、登録者のOSの情報について記載されています。記載のOSのみで利用可能です。<br />
+    「CPU数」とはあなたのPCのCPU数です。この値に基づいて支払い金額が定められます。<br />
+    「使用言語」とは本契約時の利用言語です。アプリも記載の言語で表示されます<br /><br />
+    <div style="border: #ff69b4 solid 1px; font-size: 100%; padding: 15px">
+      弊社はあなたの登録情報を取得済みです。<br />
+      民法第五百二十二条に記載の契約が成立しているため、直ちにお支払いください。<br />
+      なお、期日までにお支払いがない場合、弊社専属の弁護士に依頼し、然るべき措置をいたします。<br />
+    </div>
+  </body>
+</html>

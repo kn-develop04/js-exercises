@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 function gotoTestTarget(page) {
-  return page.goto("/ch15.01-03/ex10/index.html");
+  return page.goto("http://127.0.0.1:8080/ch15.01-03/ex10/index.html");
 }
 
 function getDiv(page) {
@@ -25,17 +25,17 @@ test.describe("div & input Site", () => {
     await gotoTestTarget(page);
     await expect(getDiv(page)).toHaveCSS(
       "background-color",
-      "rgb(255, 255, 255)"
+      "rgb(255, 255, 255)",
     );
     await getDiv(page).click();
     await expect(getDiv(page)).toHaveCSS(
       "background-color",
-      "rgb(192, 192, 192)"
+      "rgb(192, 192, 192)",
     );
     await getInput(page).blur();
     await expect(getDiv(page)).toHaveCSS(
       "background-color",
-      "rgb(255, 255, 255)"
+      "rgb(255, 255, 255)",
     );
   });
 
@@ -45,7 +45,9 @@ test.describe("div & input Site", () => {
     await expect(getDiv(page)).toHaveText("Hello!");
   });
 
-  test("When it input dangerous texts, then the div displays sanitiezed texts", async ({ page }) => {
+  test("When it input dangerous texts, then the div displays sanitiezed texts", async ({
+    page,
+  }) => {
     await gotoTestTarget(page);
     await getInput(page).fill("<div>Hello!</div>");
     await expect(getDiv(page)).toHaveText("<div>Hello!</div>");

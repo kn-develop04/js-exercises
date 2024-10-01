@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- ハッシュ値生成コマンド(cmd)：type js-exercises\ch15.01-03\ex03\index.js | openssl dgst -sha384 -binary | openssl base64 -A -->
+    <!-- 正しいハッシュ値。consoleにHello　Worldが表示される -->
+    <script
+      src="./index.js"
+      integrity="sha384-JzdR8V029DGKf1miEaX1WhJfZv890sbK7+ZceNMWseItnwowV7xqZg5/38mNRrp+"
+    ></script>
+    <!-- 正しくないハッシュ値。consoleにエラーが表示される -->
+    <script
+      src="./index.js"
+      integrity="sha384-04/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ></script>
+  </body>
+</html>

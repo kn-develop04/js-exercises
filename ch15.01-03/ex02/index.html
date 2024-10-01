@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="load-script">Load Script</button>
+    <p id="output"></p>
+    <script>
+      document
+        .getElementById("load-script")
+        .addEventListener("click", async () => {
+          try {
+            const module = await import(
+              "http://127.0.0.1:8080/ch15.01-03/ex02/index.js"
+            );
+            const message = module.greet("World");
+            document.getElementById("output").innerText = message;
+          } catch (error) {
+            console.log(error);
+          }
+        });
+    </script>
+  </body>
+</html>
