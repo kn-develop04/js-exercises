@@ -22,7 +22,7 @@ const sound = new Audio("/ch15.04-10/ex10/decision1.mp3");
 let grid = new Array(ROWS)
   .fill(null)
   .map(() =>
-    new Array(COLS).fill(null).map(() => !!Math.floor(Math.random() * 2))
+    new Array(COLS).fill(null).map(() => !!Math.floor(Math.random() * 2)),
   );
 
 // grid を canvas に描画する
@@ -39,14 +39,42 @@ function renderGrid(grid) {
   }
 }
 
-// Life Game のルールに従ってセルを更新する
+// Life Game のルールに従ってセルを更新
 function updateGrid(grid) {
-  // 新しいグリッドを作成
   const nextGrid = grid.map((arr) => [...arr]);
 
   for (let row = 0; row < ROWS; row++) {
     for (let col = 0; col < COLS; col++) {
-      // 周囲のセルの生存数を数えて nextGrid[row][col] に true or false を設定する (実装してね)
+      // 周囲の生存セルを数える
+      let liveNeighbors = 0;
+
+      for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+          // 自分自身はカウントしない
+          if (i === 0 && j === 0) continue;
+
+          const neighborRow = row + i;
+          const neighborCol = col + j;
+
+          // 有効なインデックス内かどうかを確認
+          if (
+            neighborRow >= 0 &&
+            neighborRow < ROWS &&
+            neighborCol >= 0 &&
+            neighborCol < COLS
+          ) {
+            liveNeighbors += grid[neighborRow][neighborCol] ? 1 : 0;
+          }
+        }
+      }
+
+      if (grid[row][col]) {
+        // 生存セルのルール
+        nextGrid[row][col] = liveNeighbors === 2 || liveNeighbors === 3;
+      } else {
+        // 死亡セルのルール
+        nextGrid[row][col] = liveNeighbors === 3;
+      }
     }
   }
   return nextGrid;

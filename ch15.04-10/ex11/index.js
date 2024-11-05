@@ -3,12 +3,13 @@ const list = document.querySelector("#todo-list");
 const input = document.querySelector("#new-todo");
 const template = document.querySelector("#todo-template");
 
-// { content: "...", completed: true or false } の配列
 const todos = [];
 
 function renderTodos(todos) {
   list.innerHTML = "";
-  todos.forEach((todo, index) => {
+  const filteredTodos = getFilteredTodos(todos);
+
+  filteredTodos.forEach((todo, index) => {
     const clone = template.content.cloneNode(true);
     const li = clone.querySelector("li");
     const toggle = clone.querySelector("input");
@@ -31,6 +32,16 @@ function renderTodos(todos) {
   });
 }
 
+function getFilteredTodos(todos) {
+  const hash = window.location.hash;
+  if (hash === "#/completed") {
+    return todos.filter((todo) => todo.completed);
+  } else if (hash === "#/active") {
+    return todos.filter((todo) => !todo.completed);
+  }
+  return todos; // デフォルトで全てのToDoを表示
+}
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   if (input.value.trim() === "") {
@@ -43,6 +54,7 @@ form.addEventListener("submit", (e) => {
   renderTodos(todos);
 });
 
+// ハッシュ変更イベントリスナーの追加
 window.addEventListener("hashchange", () => {
-  // ここを実装してね
+  renderTodos(todos); // ハッシュが変更されたときにToDoを再描画
 });

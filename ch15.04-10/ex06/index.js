@@ -21,6 +21,39 @@ class TodoApp extends HTMLElement {
 
     this.form = this.shadowRoot.querySelector("#new-todo-form");
     // TODO: 残りを実装
+    this.input = this.shadowRoot.querySelector("#new-todo");
+    this.todoList = this.shadowRoot.querySelector("#todo-list");
+
+    this.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.addTodo();
+    });
+  }
+  addTodo() {
+    const todoText = this.input.value.trim();
+    if (todoText === "") return;
+
+    const todoItem = document.createElement("li");
+    todoItem.textContent = todoText;
+
+    // 完了チェックボックスを作成
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.addEventListener("change", () => {
+      todoItem.classList.toggle("completed", checkbox.checked);
+    });
+
+    // 削除ボタンを作成
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "✖";
+    deleteButton.addEventListener("click", () => {
+      this.todoList.removeChild(todoItem);
+    });
+
+    todoItem.prepend(checkbox);
+    this.todoList.appendChild(todoItem);
+    todoItem.appendChild(deleteButton);
+    this.input.value = "";
   }
 }
 

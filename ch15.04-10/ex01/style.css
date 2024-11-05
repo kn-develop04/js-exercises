@@ -1,3 +1,72 @@
-.completed {
+/* 背景青で黒っぽい文字色をフォームに設定。フォームは真ん中に、20px分上に空白をあける */
+body {
+  background-color: #f0f8ff; /* 明るい青色 */
+  font-family: "MS Gothic", "Meiryo", sans-serif; /* 和風フォント */
+  color: #3d3d3d; /* 黒っぽい文字色 */
+  text-align: center;
+  padding: 20px;
+}
+/* フォームは青色背景・枠線。角を丸めてフォームの上下に空白。枠には影をつける*/
+form {
+  background-color: #e6f3ff; /* 淡い青色の背景 */
+  border: 2px solid #a0d3ff; /* 青色のボーダー */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+/* 入力箇所に余裕を持たせる。枠線は青。文字の大きさと、入力箇所の幅を指定*/
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid #7abaff; /* 明るい青のボーダー */
+  border-radius: 5px;
+  font-size: 16px;
+  width: 60%;
+}
+/* ボタン背景は青で枠線無しで角を丸める。文字色は白でその周囲に空白。カーソルを合わせると表記変更。ボタン横に空白。*/
+button {
+  background-color: #7abaff; /* ボタンの背景色 */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+/* ホバー時の色 */
+button:hover {
+  background-color: #5ca0e0;
+}
+/* リストアイテムの余白をなくす */
+#todo-list {
+  list-style-type: none;
+  padding: 0;
+}
+/* リストアイテムの背景は白で枠線は青で影付き。角は丸めてアイテム間に空白。要素は横並び。*/
+#todo-list li {
+  background-color: #ffffff; /* リストアイテムの背景色 */
+  border: 1px solid #c0e0ff; /* リストアイテムのボーダー */
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+/* チェックボックス右に空白 */
+.toggle {
+  margin-right: 10px;
+}
+/* 完了項目には灰色の線 */
+.completed label {
   text-decoration: line-through;
+  color: #888;
+}
+/* 削除ボタンの背景は透明。ボタンカーソルを合わせるとマークが変わる */
+.destroy {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
