@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ollama Chat</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      #chat-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 400px;
+        overflow-y: auto;
+      }
+      .message {
+        margin: 5px 0;
+      }
+      .user-message {
+        font-weight: bold;
+      }
+      .llm-message {
+        margin-left: 20px;
+      }
+      input[type="text"] {
+        width: 80%;
+        padding: 5px;
+      }
+      button {
+        padding: 5px;
+        cursor: pointer;
+      }
+    </style>
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <h1>Ollama Chat</h1>
+
+    <div id="chat-container"></div>
+
+    <input type="text" id="userInput" placeholder="メッセージを入力..." />
+    <button onclick="sendMessage()">送信</button>
+  </body>
+</html>

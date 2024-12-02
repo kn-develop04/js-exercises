@@ -6,6 +6,7 @@ const wss = new WebSocketServer({ port });
 // 他のクライアントにメッセージを転送する
 wss.on("connection", (ws) => {
   ws.on("message", (data) => {
+    console.log("クライアントと接続");
     const message = data.toString();
     const waitTIme = Math.floor(Math.random() * 1000 * 5);
     console.log(message, `wait ${waitTIme}ms`);

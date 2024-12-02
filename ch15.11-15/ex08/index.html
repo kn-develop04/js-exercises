@@ -1,0 +1,142 @@
+<!-- できてない。常にタイムアウトが起きる -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebSocket リクエストとレスポンス</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .request-container {
+      margin-bottom: 20px;
+    }
+    .response {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+    .error {
+      color: red;
+    }
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>WebSocket リクエストとレスポンス</h1>
+  
+  <div id="requestFormContainer">
+    <div class="request-container">
+      <input type="text" id="request1" placeholder="リクエスト1" />
+      <button onclick="sendRequest('request1')">送信1</button>
+      <div id="response1" class="response"></div>
+    </div>
+    <div class="request-container">
+      <input type="text" id="request2" placeholder="リクエスト2" />
+      <button onclick="sendRequest('request2')">送信2</button>
+      <div id="response2" class="response"></div>
+    </div>
+    <div class="request-container">
+      <input type="text" id="request3" placeholder="リクエスト3" />
+      <button onclick="sendRequest('request3')">送信3</button>
+      <div id="response3" class="response"></div>
+    </div>
+  </div>
+
+  <script>
+    const ws = new WebSocket("ws://localhost:3003");
+    const timeLimit = 5000; // タイムアウト時間（5秒）
+
+    // WebSocket接続時に呼び出される
+    ws.addEventListener("open", () => {
+      console.log("サーバに接続しました");
+    });
+
+    // WebSocket接続が開かれる前に送信するのを避けるため、メッセージの送信を遅延させる
+    function sendRequest(requestId) {
+      const inputElement = document.getElementById(requestId);
+      const message = inputElement.value.trim();
+      const responseElement = document.getElementById("response" + requestId.charAt(requestId.length - 1));
+
+      if (!message) {
+        responseElement.textContent = "リクエストが空です";
+        responseElement.classList.add('error');
+        return;
+      }
+
+      const requestIdLocal = generateRequestId(); // リクエストIDを生成
+      const requestMessage = message;
+      
+      // レスポンス表示をクリア
+      responseElement.textContent = "リクエストを送信中...";
+      responseElement.classList.remove('error', 'success');
+
+      // WebSocket接続が開いているか確認し、開いていればリクエストを送信
+      if (ws.readyState === WebSocket.OPEN) {
+        sendRequestPromise(requestIdLocal, requestMessage)
+          .then(response => {
+            responseElement.textContent = `レスポンス: ${response}`;
+            responseElement.classList.add('success');
+          })
+          .catch(error => {
+            responseElement.textContent = `エラー: ${error.message}`;
+            responseElement.classList.add('error');
+          });
+      } else {
+        responseElement.textContent = "WebSocket 接続が開いていません";
+        responseElement.classList.add('error');
+      }
+    }
+
+    // リクエストID生成
+    function generateRequestId() {
+      return Math.floor(Math.random() * 1000000).toString();
+    }
+
+    // WebSocketでリクエストを送信する関数
+    function sendRequestPromise(requestId, requestMessage) {
+      return new Promise((resolve, reject) => {
+        const messageToSend = JSON.stringify({ requestId, requestMessage });
+
+        const timeoutId = setTimeout(() => {
+          reject(new Error("タイムアウトしました"));
+        }, timeLimit);
+
+        // リクエストに対応するレスポンスを待機
+        const handleMessage = (data) => {
+          let response;
+          try {
+            response = JSON.parse(data.toString());
+          } catch (error) {
+            return;
+          }
+
+          if (response.requestId === requestId) {
+            clearTimeout(timeoutId);
+            ws.removeEventListener("message", handleMessage);
+            resolve(response.responseMessage);
+          }
+        };
+
+        // メッセージ受信時に呼ばれるイベントリスナー
+        ws.addEventListener("message", handleMessage);
+
+        // 接続が切れた場合
+        ws.addEventListener("close", () => {
+          clearTimeout(timeoutId);
+          ws.removeEventListener("message", handleMessage);
+          reject(new Error("WebSocket 接続が閉じられました"));
+        });
+
+        // リクエストメッセージをサーバに送信
+        ws.send(messageToSend);
+      });
+    }
+  </script>
+
+</body>
+</html> -->
