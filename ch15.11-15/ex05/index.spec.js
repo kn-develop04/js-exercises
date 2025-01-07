@@ -115,8 +115,6 @@ test.describe("IndexedDB-based todo app", () => {
 
     const todo = queryToDo(page, 0);
     const label = todo.getByText("練習問題を完了する");
-    // await expect(label).toBeVisible();
-    // await expect(label).toHaveCSS("text-decoration-line", "none");
   });
 
   test("complete todo", async ({ page }) => {
@@ -131,12 +129,8 @@ test.describe("IndexedDB-based todo app", () => {
 
     const todo1 = queryToDo(page, 0);
     const label1 = todo1.getByText("質問表に質問を記載する");
-    // await expect(label1).toBeVisible();
-    // await expect(label1).toHaveCSS("text-decoration-line", "none");
 
     const todo2 = queryToDo(page, 1);
     const label2 = todo2.getByText("練習問題を完了する");
-    // await expect(label2).toBeVisible();
-    // await expect(label2).toHaveCSS("text-decoration-line", "line-through"); // 完了したToDo
   });
 });

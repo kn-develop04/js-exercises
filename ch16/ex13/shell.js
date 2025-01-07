@@ -69,6 +69,8 @@ async function runcmd(cmd, stdin = null, stdout = null) {
       {
         // FIXME: ここを実装してね (2行程度)
         // HINT: cmd.file のストリームを createWriteStream で作成し runcmd を再帰的に呼び出す
+        const writeStream = fs.createWriteStream(cmd.file); // 指定したファイルに書き込むストリームを作成
+        await runcmd(cmd.cmd, stdin, writeStream); // cmd.cmdを再帰的に実行し、結果をファイルに書き込む
       }
       break;
 
@@ -76,6 +78,8 @@ async function runcmd(cmd, stdin = null, stdout = null) {
       {
         // FIXME: ここを実装してね (2行程度)
         // HINT: cmd.file のストリームを createReadStream で作成し runcmd を再帰的に呼び出す
+        const readStream = fs.createReadStream(cmd.file); // 指定したファイルから読み込むストリームを作成
+        await runcmd(cmd.cmd, readStream, stdout); // cmd.cmdを再帰的に実行し、ファイルから入力を読み込む
       }
       break;
 
@@ -84,6 +88,13 @@ async function runcmd(cmd, stdin = null, stdout = null) {
         // FIXME: ここを実装してね (4行程度)
         // HINT: cmd.left と cmd.right に対して runcmd を再帰的に呼び出し Promise.all で待つ
         // HINT: left と right を繋ぐには new PassThrought() で作成したストリームを使用する
+        const passThrough = new PassThrough(); // パイプでデータを渡すための PassThrough ストリームを作成
+
+        // cmd.left と cmd.right に対して runcmd を再帰的に呼び出し、結果を Promise.all で待つ
+        const leftPromise = runcmd(cmd.left, stdin, passThrough); // 左側のコマンドを実行
+        const rightPromise = runcmd(cmd.right, passThrough, stdout); // 右側のコマンドを実行
+
+        await Promise.all([leftPromise, rightPromise]); // 両方のコマンドが完了するまで待つ
       }
       break;
 
@@ -182,3 +193,5 @@ function parseexec(tokens) {
 }
 
 main();
+
+// echo HELLO | tr [:upper:] [:lower:] > hello.txt　をwslで実行するとhello.txtができる
