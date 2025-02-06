@@ -31,23 +31,33 @@ describe("GitHub APIのテスト", () => {
 
   test("addIssue - 新しいイシュ―を作成する", async () => {
     const mockResponse = {
-      html_url: "https://github.com/kn-develop04/js-exercises/issues/1",
+      id: 1, // idを追加
+      title: "新しいバグ", // titleを追加
     };
 
     fetchMock.mockResponseOnce(JSON.stringify(mockResponse)); // mockResponseを設定
 
-    const issueUrl = await addIssue("新しいバグ", "詳細な説明");
-    expect(issueUrl).toStrictEqual({ id: undefined, title: undefined });
+    const issue = await addIssue("新しいバグ", "詳細な説明");
+    expect(issue).toStrictEqual({
+      id: 1, // 期待するid
+      title: "新しいバグ", // 期待するtitle
+    });
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
   test("closeIssue - イシューをクローズする", async () => {
-    const mockResponse = {};
+    const mockResponse = {
+      id: 1, // idを追加
+      title: "Issue 1", // titleを追加
+    };
 
     fetchMock.mockResponseOnce(JSON.stringify(mockResponse)); // mockResponseを設定
 
     const result = await closeIssue(1);
-    expect(result).toStrictEqual({ id: undefined, title: undefined });
+    expect(result).toStrictEqual({
+      id: 1, // 期待するid
+      title: "Issue 1", // 期待するtitle
+    });
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
