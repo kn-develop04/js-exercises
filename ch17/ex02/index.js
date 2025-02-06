@@ -18,7 +18,6 @@ export async function getIssues() {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        Accept: "application/vnd.github.v3+json",
       },
     });
 
@@ -51,7 +50,6 @@ export async function addIssue(
       method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        Accept: "application/vnd.github.v3+json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -82,12 +80,10 @@ export async function closeIssue(issueId) {
 
   try {
     const url = `https://api.github.com/repos/${owner}/${repo}/issues/${issueId}`;
-
     const response = await fetch(url, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        Accept: "application/vnd.github.v3+json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({

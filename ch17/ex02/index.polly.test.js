@@ -46,14 +46,18 @@ describe("GitHub API with Polly.js", () => {
 
     // PATCHリクエストをモックして、イシュ―をクローズ
     server
-      .patch(`https://api.github.com/repos/${testOwner}/${testRepo}/issues/3`)
-      .intercept((req, res) => {
-        const { id } = req.params;
-        res.send({
-          status: 200,
-          body: { id, state: "closed", title: "Test Issue" },
-        });
+  .patch(`https://api.github.com/repos/${testOwner}/${testRepo}/issues/3`)
+  .intercept((req, res) => {
+    const { id } = req.params;
+    if (id !== "3") {
+      res.status(404).send({ message: "Not Found" });  // 不正なIDの場合は404を返す
+    } else {
+      res.send({
+        status: 200,
+        body: { id, state: "closed", title: "Test Issue" },
       });
+    }
+  });
   });
 
   afterAll(async () => {
@@ -67,16 +71,19 @@ describe("GitHub API with Polly.js", () => {
     expect(issue.title).toBe("Test Issue"); // タイトルが正しいか確認
     issueNumber = issue.id; // 作成したイシュ―のIDを保存
   });
-  //クローズだけmockが適用されていない
-  // it("should close an issue", async () => {
+
+  //クローズがうまく動かない issueNumberがおかしそう
+  // it("イシューをクローズする", async () => {
   //   // 先ほど作成したイシュ―をクローズ
   //   expect(issueNumber).toBeDefined(); // issueNumberが定義されていることを確認
   //   const response = await closeIssue(issueNumber);
-  //   expect(response).toContain("クローズされました"); // クローズされたことを確認
+  //   expect(response).toHaveProperty("state", "closed"); // クローズされた状態を確認
+  //   expect(response).toHaveProperty("title", "Test Issue"); // タイトルが正しいことを確認
   // });
 
   it("オープンなイシュ―を取得する", async () => {
     const issues = await getIssues();
+    console.log(issues)
     expect(Array.isArray(issues)).toBe(true);
     expect(issues.length).toBeGreaterThan(0);
   });
